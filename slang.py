@@ -179,6 +179,7 @@ def simulate(program):
 class Codegen:
     def __init__(self, output_file, program):
         self.module = ir.Module(name=__file__)
+        self.module.triple = llvm.get_default_triple()
         self.func = ir.Function(self.module, ir.FunctionType(ir.IntType(32), []), name="main")
         self.block = self.func.append_basic_block(name="entry")
         self.builder = ir.IRBuilder(self.block)
